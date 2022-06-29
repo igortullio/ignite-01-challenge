@@ -15,7 +15,7 @@
 
   font-style: normal;
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 22px;
   letter-spacing: 0em;
 
@@ -24,6 +24,15 @@
   transition: background-color 0.5s;
 }
 
-.button:hover {
+.button:focus {
+  box-shadow: 0 0 0 1px var(--blue-dark);
+}
+
+.button:not(:disabled):hover {
   background: var(--blue);
+}
+
+.button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
