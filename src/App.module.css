@@ -52,22 +52,15 @@
   padding: 2px 8px;
 }
 
-.content > .tasks {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  border-top: 1px solid var(--gray-400);
-  border-radius: 8px;
-}
-
-.content > .tasks .empty {
+.content .empty {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  border-top: 1px solid var(--gray-400);
+  border-radius: 8px;
 
   width: 100%;
   padding: 4rem 1.5rem;
