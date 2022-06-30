@@ -28,7 +28,9 @@ export function Task({
         onChange={() => changeStatusTask(id)}
       />
       <span className={styles.text}>{content}</span>
-      <Trash size={24} onClick={() => deleteTask(id)} />
+      <button title="Deletar comentário" onClick={() => deleteTask(id)}>
+        <Trash size={24} />
+      </button>
     </li>
   );
 }

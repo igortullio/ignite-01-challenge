@@ -77,3 +77,20 @@
   flex-grow: 1;
   max-width: 90%;
 }
+
+.item > button {
+  background: transparent;
+  border: 0;
+  color: var(--gray-100);
+  cursor: pointer;
+  line-height: 0;
+}
+
+.item > button:hover {
+  color: var(--gray-300);
+}
+
+.item > button:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 1px var(--gray-300);
+}
