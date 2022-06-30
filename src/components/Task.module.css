@@ -72,22 +72,29 @@
   opacity: 1;
 }
 
-.text {
+.item > span {
   color: var(--gray-100);
   flex-grow: 1;
   max-width: 90%;
 }
 
+.item > .textCompleted {
+  text-decoration: line-through;
+  color: var(--gray-300);
+}
+
 .item > button {
   background: transparent;
+  width: auto;
   border: 0;
-  color: var(--gray-100);
-  cursor: pointer;
+  border-radius: 0;
+  padding: 0;
   line-height: 0;
 }
 
-.item > button:hover {
+.item > button:not(:disabled):hover {
   color: var(--gray-300);
+  background: transparent;
 }
 
 .item > button:focus {

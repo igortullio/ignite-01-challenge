@@ -52,7 +52,11 @@ export default function App() {
             value={newContentTask}
             onChange={(event) => setNewContentTask(event.target.value)}
           />
-          <Button type="submit" icon={<PlusCircle size={20} />}>
+          <Button
+            type="submit"
+            icon={<PlusCircle size={24} />}
+            disabled={!newContentTask}
+          >
             Criar
           </Button>
         </form>

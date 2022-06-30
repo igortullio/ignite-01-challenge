@@ -1,3 +1,8 @@
+import { Trash } from 'phosphor-react';
+import Button from './Button';
+
+import styles from './Task.module.css';
+
 export interface TaskTypes {
   id: string;
   content: string;
@@ -8,9 +13,6 @@ interface TaskProps extends TaskTypes {
   changeStatusTask: (id: string) => void;
   deleteTask: (id: string) => void;
 }
-
-import { Trash } from 'phosphor-react';
-import styles from './Task.module.css';
 
 export function Task({
   id,
@@ -27,10 +29,12 @@ export function Task({
         checked={completed}
         onChange={() => changeStatusTask(id)}
       />
-      <span className={styles.text}>{content}</span>
-      <button title="Deletar comentário" onClick={() => deleteTask(id)}>
-        <Trash size={24} />
-      </button>
+      <span className={completed ? styles.textCompleted : ''}>{content}</span>
+      <Button
+        title="Deletar task"
+        icon={<Trash size={24} />}
+        onClick={() => deleteTask(id)}
+      />
     </li>
   );
 }
