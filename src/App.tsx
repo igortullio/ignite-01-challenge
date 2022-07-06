@@ -8,11 +8,11 @@ import Input from './components/Input';
 import { Task, TaskTypes } from './components/Task';
 
 import styles from './App.module.css';
+import { useLocalStorage } from './lib/localStorage';
 
 export default function App() {
+  const [tasks, setTasks] = useLocalStorage<TaskTypes[]>('TODO_TASKS', []);
   const [newContentTask, setNewContentTask] = useState('');
-  const [tasks, setTasks] = useState<TaskTypes[]>([]);
-
   const [dragItem, setDragItem] = useState<TaskTypes>();
 
   function handleAddTask(event: FormEvent) {
