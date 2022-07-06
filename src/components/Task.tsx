@@ -1,4 +1,6 @@
 import { Trash } from 'phosphor-react';
+import { LiHTMLAttributes } from 'react';
+
 import Button from './Button';
 
 import styles from './Task.module.css';
@@ -20,9 +22,10 @@ export function Task({
   completed,
   changeStatusTask,
   deleteTask,
-}: TaskProps) {
+  ...rest
+}: TaskProps & LiHTMLAttributes<HTMLLIElement>) {
   return (
-    <li className={styles.item}>
+    <li className={styles.item} {...rest}>
       <input
         className={styles.test}
         type="checkbox"

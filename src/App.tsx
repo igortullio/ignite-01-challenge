@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { EventHandler, FormEvent, useState, DragEvent } from 'react';
 import { PlusCircle, Clipboard } from 'phosphor-react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -12,6 +12,8 @@ import styles from './App.module.css';
 export default function App() {
   const [newContentTask, setNewContentTask] = useState('');
   const [tasks, setTasks] = useState<TaskTypes[]>([]);
+
+  const [dragItem, setDragItem] = useState<TaskTypes>();
 
   function handleAddTask(event: FormEvent) {
     event.preventDefault();
@@ -41,6 +43,25 @@ export default function App() {
 
   function handleDeleteTask(id: string) {
     setTasks(tasks.filter((task) => task.id !== id));
+  }
+
+  function handleDragStart(itemDragIndex: number) {
+    setDragItem(tasks[itemDragIndex]);
+  }
+
+  function handleDragOver(itemDragOverIndex: number) {
+    const draggedOverItem = tasks[itemDragOverIndex];
+
+    // if the item is dragged over itself, ignore
+    if (dragItem?.id === draggedOverItem.id) return;
+
+    // filter out the currently dragged item
+    const newItems = tasks.filter((item) => item.id !== dragItem?.id);
+
+    // add the dragged item after the dragged over item
+    newItems.splice(tasks.indexOf(draggedOverItem), 0, dragItem!);
+
+    setTasks(newItems);
   }
 
   return (
@@ -74,12 +95,18 @@ export default function App() {
 
           {tasks.length ? (
             <ul>
-              {tasks.map(({ id, ...rest }) => (
+              {tasks.map(({ id, ...rest }, index) => (
                 <Task
                   key={id}
                   id={id}
                   changeStatusTask={handleChangeStatusTask}
                   deleteTask={handleDeleteTask}
+                  draggable
+                  onDragStart={() => handleDragStart(index)}
+                  onDragOver={(event) => {
+                    event.preventDefault();
+                    handleDragOver(index);
+                  }}
                   {...rest}
                 />
               ))}
